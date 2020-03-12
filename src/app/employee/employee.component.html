@@ -1,0 +1,29 @@
+<p>Table is just a mapping of objects to table rows with <code>ngFor</code></p>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Currency</th>
+    <th scope="col">Spot</th>
+    <th scope="col">İncrease/Decrease</th>
+    <th scope="col">Chart</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let m of money; index as i">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>{{ m.key }}</td>
+    <td>{{ m.value | number }}</td>
+    <td>
+      <a *ngIf="m.increament<0">Decreased</a> 
+      <a *ngIf="m.increament>0">increased</a> 
+      <a *ngIf="m.increament==0">nothing changed</a> 
+    </td>
+    <td>goToChart 
+      <input type="button" class="btn btn-success" (click)="goToChart($event)" value="Item Details"  [routerLink]="['/table', m.key]"/>
+    </td>
+
+  </tr>
+  </tbody>
+</table>
